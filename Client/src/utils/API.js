@@ -3,7 +3,9 @@ import axios from "axios";
 export default {
   // Gets all books
   getBooks: function () {
-    return axios.get("/api/books");
+    return axios.get(
+      "https://www.googleapis.com/books/v1/volumes?q=langRestrict=en&printType=books"
+    );
   },
   // Gets the book with the given id
   getBook: function (id) {
@@ -19,4 +21,4 @@ export default {
   },
 };
 
-// https://www.googleapis.com/books/v1/volumes?q={search terms}
+//
