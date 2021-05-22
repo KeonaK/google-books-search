@@ -19,7 +19,7 @@ This app allows the user to search for books using the Google Books Api. The use
 
 ## ScreenShot
 
-![screen shot]()
+![screen shot](./images/googleBooks.png)
 
 ## Deployment
 
