@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Link } from "react";
 import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
-import { FormBtn, Input } from "../components/Form";
+import DeleteBtn from "../components/DeleteBtn";
 import { Result, ResultItem } from "../components/Result";
 import { Container, Col, Row } from "../components/Grid";
 
@@ -37,18 +37,16 @@ function Search() {
               <h1 className="text-center">No Books to Display</h1>
             ) : (
               <Result>
-                {books.map((book) => {
-                  return (
-                    <ResultItem
-                      key={book._id}
-                      title={book.volumeInfo.title}
-                      authors={book.volumeInfo.authors}
-                      description={book.volumeInfo.description}
-                      image={book.volumeInfo.imageLinks.thumbnail}
-                      link={book.volumeInfo.infoLink}
-                    />
-                  );
-                })}
+                {books.map((book) => (
+                  <ResultItem key={book._id}>
+                    <Link to={"/books/" + book._id}>
+                      <strong>
+                        {book.title} by {book.author}
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => deleteBook(book._id)} />
+                  </ResultItem>
+                ))}
               </Result>
             )}
           </Col>

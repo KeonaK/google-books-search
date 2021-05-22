@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import { FormBtn, Input } from "../components/Form";
@@ -21,6 +21,32 @@ function Search() {
       .then((res) => setBooks(res.data.items))
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    loadBooks();
+  }, []);
+
+  function loadBooks() {
+    API.getBooks()
+      .then((res) => setBooks(res.data))
+      .catch((err) => console.log(err));
+  }
+
+  function handleSave(event) {
+    event.preventDefault();
+    if (bookSearch.title && bookSearch.authors) {
+      API.saveBook({
+        id: bookSearch.id,
+        title: bookSearch.title,
+        authors: bookSearch.authors,
+        description: bookSearch.description,
+        image: bookSearch.image,
+        link: bookSearch.link,
+      })
+        .then((res) => loadBooks())
+        .catch((err) => console.log(err));
+    }
+  }
 
   return (
     <div>
@@ -69,14 +95,20 @@ function Search() {
               <Result>
                 {books.map((book) => {
                   return (
-                    <ResultItem
-                      key={book._id}
-                      title={book.volumeInfo.title}
-                      authors={book.volumeInfo.authors}
-                      description={book.volumeInfo.description}
-                      image={book.volumeInfo.imageLinks.thumbnail}
-                      link={book.volumeInfo.infoLink}
-                    />
+                    <div>
+                      <ResultItem
+                        key={book._id}
+                        title={book.volumeInfo.title}
+                        authors={book.volumeInfo.authors}
+                        description={book.volumeInfo.description}
+                        image={book.volumeInfo.imageLinks.thumbnail}
+                        link={book.volumeInfo.infoLink}
+                      />
+
+                      <FormBtn onClick={handleSave} value={book.id}>
+                        Save
+                      </FormBtn>
+                    </div>
                   );
                 })}
               </Result>

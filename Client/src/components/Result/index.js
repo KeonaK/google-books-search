@@ -1,5 +1,6 @@
 import React from "react";
 import { FormBtn } from "../Form";
+
 import Thumbnail from "../Thumbnail";
 import { Container, Col, Row } from "../Grid";
 import "./style.css";
@@ -29,7 +30,6 @@ export function ResultItem({ title, authors, description, image, link }) {
                     View
                   </a>
                 </FormBtn>
-                <FormBtn>Save</FormBtn>
               </div>
             </div>
             <div className="col-12">
