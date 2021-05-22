@@ -69,26 +69,14 @@ function Search() {
               <Result>
                 {books.map((book) => {
                   return (
-                    <div>
-                      <ResultItem
-                        key={book._id}
-                        title={book.volumeInfo.title}
-                        authors={book.volumeInfo.authors}
-                        description={book.volumeInfo.description}
-                        image={book.volumeInfo.imageLinks.thumbnail}
-                        link={book.volumeInfo.infoLink}
-                      />
-                      <div>
-                        <a
-                          target="_blank"
-                          rel="noreferrer"
-                          href={book.volumeInfo.infoLink}
-                        >
-                          View
-                        </a>
-                        <FormBtn>Save</FormBtn>
-                      </div>
-                    </div>
+                    <ResultItem
+                      key={book._id}
+                      title={book.volumeInfo.title}
+                      authors={book.volumeInfo.authors}
+                      description={book.volumeInfo.description}
+                      image={book.volumeInfo.imageLinks.thumbnail}
+                      link={book.volumeInfo.infoLink}
+                    />
                   );
                 })}
               </Result>
