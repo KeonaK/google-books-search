@@ -24,12 +24,12 @@ export function ResultItem({ title, authors, description, image, link }) {
             <div className="row">
               <div className="col-12">
                 <h3 className="float-left">{title}</h3>
-                <FormBtn
-                  rel="noreferrer noopener"
-                  target="_blank"
-                  href={link}
-                ></FormBtn>
-                <FormBtn href={link}></FormBtn>
+                <FormBtn>
+                  <a rel="noreferrer noopener" target="_blank" href={link}>
+                    View
+                  </a>
+                </FormBtn>
+                <FormBtn>Save</FormBtn>
               </div>
             </div>
             <div className="col-12">
