@@ -1,11 +1,12 @@
 import axios from "axios";
 
 export default {
+  getApi: function (query) {
+    return axios.get(` https://www.googleapis.com/books/v1/volumes?q=${query}`);
+  },
   // Gets all books
   getBooks: function () {
-    return axios.get(
-      "https://www.googleapis.com/books/v1/volumes?q=langRestrict=en&printType=books"
-    );
+    return axios.get("/api/books");
   },
   // Gets the book with the given id
   getBook: function (id) {
@@ -20,5 +21,3 @@ export default {
     return axios.post("/api/books", bookData);
   },
 };
-
-//
