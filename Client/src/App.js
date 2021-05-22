@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Nav from "../src/components/Nav";
-import Search from "../src/pages/Search";
-import Saved from "../src/pages/Saved";
-import NoMatch from "../src/pages/NoMatch";
+import Nav from "./components/Nav";
+import Search from "./pages/Search";
+import Saved from "./pages/Saved";
+import NoMatch from "./pages/NoMatch";
 
 function App() {
   return (
