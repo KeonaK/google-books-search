@@ -1,48 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
-import Form from "../components/Form";
+import { FormBtn, Input } from "../components/Form";
+import { Result, ResultItem } from "../components/Result";
 
 function Search() {
-  // state = {
-  //     search: "",
-  //     results: [],
-  //     error: "",
-  //   };
+  const [books, setBooks] = useState([]);
+  const [bookSearch, setBookSearch] = useState("");
 
-  //   componentDidMount(){
-  //     this.findEmployee("");
-  //   };
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setBookSearch(value);
+  };
 
-  //   findEmployee = () => {
-  //     API.find()
-  //       .then((res) => this.setState({ results: res.data.results }))
-  //       .catch((err) => console.log(err));
-  //   };
+  const handleFormSubmit = (event) => {
+    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+    event.preventDefault();
+    API.getBooks(bookSearch)
+      .then((res) => setBooks(res.data))
+      .catch((err) => console.log(err));
+  };
 
-  //   handleInputChange = (event) => {
-  //     const name = event.target.name;
-  //     const value = event.target.value;
-  //     this.setState({
-  //       [name]: value,
-  //     });
-  //   };
-
-  //   handleFormSubmit = (event) => {
-  //     event.preventDefault();
-  //     this.findEmployee();
-  //   };
-
-  // render(){
   return (
     <div>
       <Jumbotron>
         <h1>React Google Books Search</h1>
         <h3>Search for and save books of interest</h3>
       </Jumbotron>
-      <Form />
+      <form className="search">
+        <div className="form-group">
+          {" "}
+          <label htmlFor="search">Books:</label>
+          <input
+            name="bookSearch"
+            value={bookSearch}
+            onChange={handleInputChange}
+            placeholder="Enter book name here"
+          />
+          <button
+            type="submit"
+            onClick={handleFormSubmit}
+            className="btn btn-success"
+          >
+            Search
+          </button>
+        </div>
+      </form>
     </div>
   );
-  //   }
 }
 
 export default Search;
