@@ -39,11 +39,10 @@ function Search() {
               <Result>
                 {books.map((book) => (
                   <ResultItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
+                    <strong>
+                      {book.title} by {book.author}
+                    </strong>
+
                     <DeleteBtn onClick={() => deleteBook(book._id)} />
                   </ResultItem>
                 ))}
